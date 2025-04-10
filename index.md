@@ -8,9 +8,9 @@ title: "SNHU ePortfolio"
 
 # SNHU ePortfolio
 
-For this project, I created a compact desktop player for an internet radio station I listen to often. This was a project I had attempted in the past, but failed for a number of reasons. In this project I was able to complete the project, learn a lot a long the way, and meet both personal and educational goals.
-
 > The GitHub repository for this project is at **[Fenekhu/gr-miniplayer](https://github.com/Fenekhu/gr-miniplayer)** if you would like to try the player or view the project.  
+
+For this project, I created a compact desktop player for an internet radio station I listen to often. This was a project I had attempted in the past, but failed for a number of reasons. In this project I was able to complete the project, learn a lot a long the way, and meet both personal and educational goals.
 
 - Personal Goals:
   - Finish a project
@@ -38,7 +38,7 @@ Unfortunately, I didn't get very far. I made a prototype UI with an audio player
 
 ## Week One: Planning
 
-To start planning properly from the beginning, I drafted an initial list features I wanted in my player app. This initial set of business and technical features would change over the course of the project, such as adding integration with OS media controls, discord rich presence, and a history list.  
+To start planning properly from the beginning, I drafted an initial list of features I wanted in my player app. This initial set of business and technical features would end up changing over the course of the project, such as by adding integration with OS media controls, discord rich presence, and a history list.  
 
 - An audio player and audio player controls.
 - Connecting to a websocket to receive live song information.
@@ -54,7 +54,7 @@ The first place I went to give my application some structure was the Flutter doc
 
 [![An example of the Dart objects that might exist in one feature using the architecture described on page.](assets/flutter-mvvm.png)](https://docs.flutter.dev/app-architecture/guide#mvvm)
 
-With this as a base, came up with a list of 40-ish elements across the different layers to reach all the features I had planned for the app. I turned this list into a flowchart similar to the one above, illustrating the location of each component within the architecture, as well as the flow of communications between them. I modified the diagram frequently throughout development, so unfortunately I don't have this initial version anymore.
+With this as a base, I came up with a list of 40-ish elements across the different layers to reach all the features I had planned for the app. I turned this list into a flowchart similar to the one above, illustrating the location of each component within the architecture, as well as the flow of communications between them. I modified the diagram frequently throughout development, so unfortunately I don't have this initial version anymore.
 
 ## Week Two: Reviewing My Previous Project
 
@@ -62,11 +62,11 @@ If the embed above doesn't work: [my code review (YouTube)](https://youtu.be/7H-
 
 While what little functionality there was within my previous project was junk, I knew a fair amount of the UI would be salvagable. It would need tweaking to handle the new patterns of communication I planned to handle application state with, such as streams and dependency injection. Some UI components were so intertwined with the functionality and state that they had to becompletely rewritten.  
 
-In addition to salvaging code, I also wanted to identify bad practices, inconsistent style, and other issues within my usage of Dart and Flutter, to avoid similar mistakes and keep my new project clean. For example, there are roughly zero code comments in my original project, but the new project is almost fully documented where the code isn't self documenting (something I try to have code be as much as possible).
+In addition to salvaging code, I also wanted to identify bad practices, inconsistent style, and other issues within my usage of Dart and Flutter, to avoid similar mistakes and keep my new project clean. For example, there are roughly zero code comments in my original project, but the new project is almost fully documented where the code isn't self-documenting (which I try to do as much as possible).
 
 Another example of something that was cleanly rewritten is in [`stream_endpoint.dart`](assets/initial-project-code/stream_endpoint.dart):
 
-*For background, the radio stream is available at four different qualities, all with different URLs. In the initial project, I was just using test endpoints instead of the actual stream in case I accidentally made a mistake that spammed the url with requests, I wouldn't want to get my IP blacklisted from the station I often listen to.*
+*For background, the radio stream is available at four different qualities, all with different URLs. In the initial project, I was just using test endpoints instead of the actual stream. If I accidentally made a mistake that spammed the url with requests, I wouldn't want to get my IP blacklisted from the station I often listen to.*
 
 ```dart
 class StreamEndpoint {
@@ -85,10 +85,10 @@ class StreamEndpoint {
 }
 ```
 
-The class here clearly represents an enumerated set of constant objects, but for some reason I didn't make this an enum. This was easily refactored into a more sensible Dart [enum in the final project](https://github.com/Fenekhu/gr-miniplayer/blob/main/lib/util/enum/stream_endpoint.dart):
+The class here clearly represents an enumerated set of constant objects, but for some reason I didn't make this an enum. This was easily refactored into a more sensible [Dart enum in the final project](https://github.com/Fenekhu/gr-miniplayer/blob/main/lib/util/enum/stream_endpoint.dart):
 
 ```dart
-// yes, 2 and 1 are backwards like that, because originally there was only one endpoint (Standard /1/).
+// yes, 2 and 1 are backwards like that, because historically there was only one endpoint (Standard /1/).
 enum StreamEndpoint {
     mobile(value: '2', name: 'Mobile',   desc: '64k Opus'),
   standard(value: '1', name: 'Standard', desc: '128k mp3'),
