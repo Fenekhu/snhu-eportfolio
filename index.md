@@ -103,7 +103,7 @@ The first place I went to give my application some structure was the Flutter doc
 
 With this as a base, I came up with a list of 40-ish elements across the different layers to reach all the features I had planned for the app. I turned this list into a flowchart like the one above, illustrating the location of each component within the architecture, as well as the flow of communications between them. I modified the diagram frequently throughout development, so unfortunately, I don't have this initial version anymore. Instead, here is the current (and likely final) state of the diagram. Note that it is "backwards" compared to the diagram above. Also, because Views and ViewModels were in a 1-1 relation (except for the window controls, which needed no viewmodel), I chose to draw them as a single box spanning both categories to keep the diagram cleaner. In the code base, they have been separated into two separate classes and files.
 
-![A diagram of the major components in my app, sorted into layers, with arrows indicating communication](assets/gr-miniplayer.drawio.png)
+![A diagram of the major components in my app, sorted into layers, with arrows indicating communication](assets/gr-miniplayer.png)
 
 ### Reviewing My Previous Project (Week Two)
 
